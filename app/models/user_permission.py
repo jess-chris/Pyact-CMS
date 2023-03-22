@@ -34,8 +34,8 @@ class User_Permission(db.Model):
   comment_delete = db.Column(db.Boolean, default=True, nullable=False)
   
   
-  created_at = db.Column(db.DateTime, db.ForeignKey('users.created_at'), nullable=False)
-  updated_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+  # created_at = db.Column(db.DateTime, db.ForeignKey('users.created_at'), nullable=False)
+  # updated_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
   
   
   

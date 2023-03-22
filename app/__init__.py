@@ -7,12 +7,13 @@ from flask_login import LoginManager
 
 from .config import Config
 from .models import db, User
+from .routes.user_routes import user_routes
+from .routes.auth_routes import auth_routes
 
 app = Flask(__name__, static_folder='../build', static_url_path='/')
 
 base_url = 'pyact-cms'
 
-# Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
@@ -23,7 +24,8 @@ def load_user(id):
   
 app.config.from_object(Config)
   
-  
+app.register_blueprint(user_routes, url_prefix=f"/{base_url}/profile")
+app.register_blueprint(auth_routes, url_prefix=f"/{base_url}/auth")
 db.init_app(app)
 Migrate(app, db)
   
