@@ -28,6 +28,8 @@ Mako = "*"
 boto3 = "*"
 flask-socketio = "*"
 eventlet = "*"
+email-validator = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 psycopg2-binary = "*"

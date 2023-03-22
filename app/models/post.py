@@ -9,11 +9,11 @@ class Post(db.Model):
   user_name = db.Column(db.String, db.ForeignKey('users.username'), nullable=False)
   title = db.Column(db.Text, nullable=False)
   content = db.Column(db.Text)
-  location = db.Column(db.Integer, db.ForeignKey('pages.id', nullable=False))
+  location = db.Column(db.Integer, db.ForeignKey('pages.id'), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
   
-  comments = db.relationship('Comment', backref='comments', cascade='all delete')
+  comments = db.relationship('Comment', backref='comments', cascade='all, delete')
   
   
   def to_dict(self):
@@ -24,6 +24,7 @@ class Post(db.Model):
       'title': self.title,
       'content': self.content,
       'location': self.location,
+      'comments': [comment.to_dict() for comment in self.comments],
       'created_at': self.created_at,
       'updated_at': self.updated_at
     }
